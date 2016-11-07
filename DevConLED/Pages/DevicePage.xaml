@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DevConLED.DevicePage">
+		<ContentPage.ToolbarItems>
+		<ToolbarItem Text="{Binding ConnectText}" Command="{Binding ConnectionToggle}" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content Title="Device">
+		<StackLayout>
+			<TableView Intent="Form">
+				<TableRoot>
+					<TableSection Title="Information">
+						<TextCell Text="Connection Status" Detail="{Binding Status}" />
+						<TextCell Text="Name" Detail="{Binding Name}" />
+						<TextCell Text="RSSI" Detail="{Binding Rssi}" />
+					</TableSection>
+				</TableRoot>
+			</TableView>
+			<StackLayout IsVisible="{Binding IsConnected}">
+				<Button Image="{Binding PowerButtonImg}" Command="{Binding PowerToggle}" HeightRequest="50" WidthRequest="50"/>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30" />
+						<RowDefinition Height="30" />
+						<RowDefinition Height="30" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Button x:Name="btnRed" BackgroundColor="Red" Grid.Row="0" Grid.Column="0" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnRed}">
+					</Button>
+					<Button x:Name="btnGreen" BackgroundColor="Green" Grid.Row="0" Grid.Column="1" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnGreen}">
+					</Button>
+					<Button x:Name="btnBlue" BackgroundColor="Blue" Grid.Row="0" Grid.Column="2" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnBlue}">
+					</Button>
+					<Button x:Name="btnOrange" BackgroundColor="#FFA500" Grid.Row="1" Grid.Column="0" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnOrange}">
+					</Button>
+					<Button x:Name="btnTeal" BackgroundColor="#00FF83" Grid.Row="1" Grid.Column="1" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnTeal}">
+					</Button>
+					<Button x:Name="btnPurple" BackgroundColor="#D800FF" Grid.Row="1" Grid.Column="2" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnPurple}">
+					</Button>
+					<Button x:Name="btnHigh" BackgroundColor="#FFFF00" Grid.Row="2" Grid.Column="0" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnHigh}">
+					</Button>
+					<Button x:Name="btnMid" BackgroundColor="#FFFF60" Grid.Row="2" Grid.Column="1" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnMid}">
+					</Button>
+					<Button x:Name="btnLow" BackgroundColor="#FFFF90" Grid.Row="2" Grid.Column="2" Command="{Binding ColorClickedCommand}" CommandParameter="{x:Reference btnLow}">
+					</Button>
+				</Grid>
+				<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="20,0,20,0">
+					<Label Text="Red" WidthRequest="50" VerticalOptions="Center">
+					</Label>
+					<Slider Minimum="0" Maximum="255" HorizontalOptions="FillAndExpand" Value="{Binding BulbStatus.Red}" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="20,0,20,0">
+					<Label Text="Green" WidthRequest="50" VerticalOptions="Center">
+					</Label>
+					<Slider Minimum="0" Maximum="255" HorizontalOptions="FillAndExpand" Value="{Binding BulbStatus.Green}" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="20,0,20,0">
+					<Label Text="Blue" WidthRequest="50" VerticalOptions="Center">
+					</Label>
+					<Slider Minimum="0" Maximum="255" HorizontalOptions="FillAndExpand" Value="{Binding BulbStatus.Blue}"/>
+				</StackLayout>
+				<Button Text="Set Color" FontAttributes="Bold" BackgroundColor="{Binding SelectedColorCode}">
+				</Button>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
